@@ -123,4 +123,8 @@ target/
 # dotenv
 .env
 
+/output
+
+/results
+
 
