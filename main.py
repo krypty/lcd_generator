@@ -2,7 +2,7 @@ from LCDGenerator import LCDGenerator
 
 
 if __name__ == "__main__":
-    gen = LCDGenerator('output', '#000000', '#550012')
-    gen.generate_gif("coucou")
-    print("gif generated in result folder")
+    gen = LCDGenerator('output', '#000000', '#00ff00')
+    gen.generate_gif("u jelly motherfucker text")
+    print("gif generated in 'results' folder")
     gen.clean_output_folder()

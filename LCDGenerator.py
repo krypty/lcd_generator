@@ -7,7 +7,6 @@ class LCDGenerator:
 
     def __init__(self, output_folder, background_color_hex_code, text_color_hex_code):
         self.output_folder = output_folder
-        self.results_folder = 'results'
         self.back_color = background_color_hex_code
         self.text_color = text_color_hex_code
         self.size = 96
@@ -65,9 +64,6 @@ class LCDGenerator:
         if not os.path.exists(self.output_folder):
             os.makedirs(self.output_folder)
 
-        if not os.path.exists(self.results_folder):
-            os.makedirs(self.results_folder)
-
         for t in range(2 * self.nb_empty + len(text)):
             temp = img.copy()
             draw = ImageDraw.Draw(temp)
@@ -78,12 +74,10 @@ class LCDGenerator:
             temp.save(self.output_folder + "/" + "%s.png" % ts)
 
         # use imagemagick to create gif
-        os.system("convert -delay %d -loop 0 %s/*.png %s/output_%s.gif" %
-                  (self.delay, self.output_folder, self.results_folder, datetime.datetime.now().strftime("%I:%M:%S%p_%b-%d-%Y")))
+        os.system("convert -delay %d -loop 0 %s/*.png %s/output-%s.gif" % (self.delay, self.output_folder, "results",
+                                                                          datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")))
 
     def generate_gif(self, text):
         self.generate_gif_custom_colors(text, self.back_color, self.text_color)
 
-    def get_gif_file(self):
-        pass
 
